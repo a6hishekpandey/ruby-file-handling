@@ -59,6 +59,41 @@ line2 = file.gets.chomp #=> reads next line
 file.gets  #=> nil
 file.eof?  #=> true
 
+
+# File pointer
+file = File.new('groceries.txt', 'r')
+file.pos       #=> 0
+file.read(3)   #=> reads 3 characters
+file.pos       #=> 3
+file.pos += 3  #=> 6
+
+file.rewind    #=> 0, means reset to beginning of the file
+file.pos       #=> 0
+
+
+# Read or write an entire file
+File.read(filepath)       #=> returns string and does not remove '\n'
+File.readlines(filepath)  #=> returns an array of strings and does not remove '\n'
+
+File.write(filepath, string)
+
+
+# Rename, delete, and copy
+File.rename('oldname.txt', 'newname.txt')
+File.delete('newname.txt')
+
+require 'fileutils'
+FileUtils.cp('orig.txt', 'dup.text')
+
+
+# Examine file details
+File.exists?(filepath)
+File.file?(filepath)
+File.directory?(filepath)
+File.readable?(filepath)
+File.writeable?(filepath)
+File.executable?(filepath)
+
 # notes:
 #=> filemode 'w' will wipe everything if file already exists
 #=> << will always append at the end no matter where cursor was at that time
