@@ -31,10 +31,10 @@ end
 
 
 # File Access Modes
-1. w: starting a new file
-2. r+: reading/writing to an existing file
-3. r: read-only access to a file
-4. a: appending data to the end of a file
+#=> w: starting a new file
+#=> r+: reading/writing to an existing file
+#=> r: read-only access to a file
+#=> a: appending data to the end of a file
 
 
 # Write to files
