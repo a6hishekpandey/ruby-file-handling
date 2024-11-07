@@ -84,6 +84,8 @@ File.delete('newname.txt')
 
 require 'fileutils'
 FileUtils.cp('orig.txt', 'dup.text')
+FileUtils.mv('dup.txt', 'renamed.txt')  #=> renames the file
+FileUtils.rm('renamed.txt')             #=> removes the file
 
 
 # Examine file details
@@ -93,6 +95,10 @@ File.directory?(filepath)
 File.readable?(filepath)
 File.writeable?(filepath)
 File.executable?(filepath)
+File.size(filepath)          #=> returns size in bytes
+File.dirname(filepath)
+File.basename(filepath)
+File.extname(filepath)
 
 # notes:
 #=> filemode 'w' will wipe everything if file already exists
