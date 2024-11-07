@@ -25,7 +25,7 @@ file = File.new(filepath, 'w')
 # work with the file
 file.close
 
-file.open(filepath, 'w') do |file|
+File.open(filepath, 'w') do |file|
 # work with file
 end
 
