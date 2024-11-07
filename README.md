@@ -7,7 +7,6 @@ File.join("", "my_dir", "test.rb")
 #=> mac: /my_dir/test.rb
 #=> windows: \my_dir\test.rb
 
-
 # dev/example.rb
     puts "The file (relative): #{__FILE__}"                                  #=> The file (relative): example.rb
     puts "The file (absolute): #{File.expand_path(__FILE__)}"                #=> The file (absolute): /dev/example.rb 
