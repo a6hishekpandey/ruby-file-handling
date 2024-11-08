@@ -154,3 +154,65 @@ array = Dir.glob('report_201[5-9].{pdef,doc,docx}')
 #=> entries are contents of the directory (returns what we get while executing ls -la in a unix envirenment)
 #=> glob returns an array of filenames which match a pattern and does not include entries for '.' and '..'
 ```
+
+## Common Data Formats
+
+```ruby
+# CSV
+#=> Read
+require 'cvs'
+CSV.read('data.csv').foreach do |row|
+# use row here
+end
+
+array_of_arrays = CSV.read('data.csv')
+
+#=> Write
+require 'cvs'
+CSV.open('data.csv', 'w') do |csv|
+csv << ['row', 'of', 'CSV', 'data']
+end
+
+# CSV to Hashes
+require 'csv'
+
+headers = nil
+presidens = []
+
+CSV.foreach('us_presidents.csv') do |row|
+    if headers == nil
+        headers = row
+    else
+        presidens << row
+    end
+end
+
+labels = headers.map {|item| item.downcase.gsub(/\s/, '_')}
+new_hash = labels.zip(presidens.first).to_h
+
+
+# YAML
+#=> Read
+require 'psych'
+yaml = File.read('file.yml')
+ruby_data = Psych.load(yaml)
+
+#=> Write
+require 'psych'
+yaml = Psych.dump(ruby_data)
+yaml = {'enabled' => true}.to_yaml
+File.write('file.yaml', yaml)
+
+
+# JSON
+#=> Read
+require 'json'
+json = File.read('file.json')
+hash = JSON.parse(json)
+
+#=> Write
+require 'json'
+json = JSON.generate(hash)
+json = {'enabled' => true}.to_json
+File.write('file.json', json)
+```
