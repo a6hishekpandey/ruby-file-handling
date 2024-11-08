@@ -99,8 +99,58 @@ File.size(filepath)          #=> returns size in bytes
 File.dirname(filepath)
 File.basename(filepath)
 File.extname(filepath)
+File.mtime                   #=> returns last modified time (write)
+File.atime                   #=> returns last accessed time (read or write)
+File.ctime                   #=> returns status change time (read, write, permission)
 
 # notes:
 #=> filemode 'w' will wipe everything if file already exists
 #=> << will always append at the end no matter where cursor was at that time
+```
+
+## Work with Directories
+
+```ruby
+# Create directories
+Dir.mkdir(filepath)
+
+require 'fileutils'
+FileUtils.mkdir(filepath)
+
+Dir.delete(filepath)       #=> does not delete unless empty
+
+require 'fileutils'
+FileUtils.rmdir(filepath)  #=> does not delete unless empty
+FileUtils.rmdir_r(filepath)
+
+Dir.empty?(filepath)
+
+
+# Change directories
+Dir.pwd    #=> returns present working directory
+path = File.join('', 'User', 'Abhishek', 'Desktop')
+Dir.chdir(path)
+
+
+# Entries
+array = Dir.entries(filepath)
+
+
+# Glob
+array = Dir.glob('*')
+array = Dir.glob('report_201[5-9].{pdef,doc,docx}')
+
+# Glob pattern symbols
+#=> c*: matches files beginning with c
+#=> *c: matches files ending with c
+#=> *c*: matches all files with c in them
+#=> **: matches directories recursively
+#=> ?: matches any one char
+#=> [a-z]: matches any one char in the set
+#=> {p,q}: matches either literal p or literal q
+
+# notes:
+#=> both relative and absolute paths will work
+#=> entries are contents of the directory (returns what we get while executing ls -la in a unix envirenment)
+#=> glob returns an array of filenames which match a pattern and does not include entries for '.' and '..'
 ```
